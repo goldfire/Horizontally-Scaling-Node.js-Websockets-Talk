@@ -4,10 +4,10 @@ var introText = document.querySelector('.intro-text');
 var audioContext = (typeof AudioContext !== 'undefined') ? new AudioContext() : new webkitAudioContext();
 
 // Setup WebSocket connection and listen for messages.
-var ws = new WebSocket('ws://scale.goldfirestudios.com');
+var ws = new WebSocket('ws://scaleserver.goldfirestudios.com');
 ws.onmessage = function(msg) {
   var data = JSON.parse(msg.data);
-  playAudioVisual(data.x, data.y, data.color);
+  playAudioVisual(data.x * window.innerWidth, data.y * window.innerHeight, data.color);
 };
 
 // Handle all clicks on the click area.
@@ -16,8 +16,8 @@ clickArea.addEventListener('click', function onClick() {
 
   // Place color dot in this location.
   ws.send(JSON.stringify({
-    x: event.x,
-    y: event.y
+    x: event.x / window.innerWidth,
+    y: event.y / window.innerHeight
   }));
 
   // Hide the intro text.
