@@ -78,3 +78,8 @@ function unlockMobile() {
 // Setup submono so that we can play a range of tones.
 var synth = new Monosynth(audioContext);
 var unlocked = false;
+
+// Update the intro text.
+if (window.location.hash === '#showurl') {
+  introText.innerHTML = 'scale.goldfirestudios.com';
+}
