@@ -1,6 +1,6 @@
 var port = parseInt(process.argv[2], 10);
 var Primus = require('primus');
-var primus = new Primus({port: port, transformer: 'websockets'});
+var primus = new Primus.createServer({port: port, transformer: 'websockets'});
 var redis = require('redis');
 var pub = redis.createClient();
 var sub = redis.createClient();
