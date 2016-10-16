@@ -9,6 +9,7 @@
   "dependencies": {
     "submono": "*",
     "ws": "*",
-    "redis": "*"
+    "redis": "*",
+    "primus": "*"
   }
 }

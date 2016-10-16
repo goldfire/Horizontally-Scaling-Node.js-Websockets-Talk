@@ -3,20 +3,19 @@ var clickArea = document.querySelector('.click-area');
 var introText = document.querySelector('.intro-text');
 var audioContext = (typeof AudioContext !== 'undefined') ? new AudioContext() : new webkitAudioContext();
 
-// Setup WebSocket connection and listen for messages.
-var ws = new Primus('ws://scaleserver.goldfirestudios.com/primus');
+var ws = new Primus('ws://localhost:8000/primus');
 ws.on('data', function(data) {
-  playAudioVisual(data.x * window.innerWidth, data.y * window.innerHeight, data.color);
+  playAudioVisual(data.x, data.y, 'blue');
 });
 
 // Handle all clicks on the click area.
-clickArea.addEventListener('click', function onClick() {
+clickArea.addEventListener('click', function onClick(event) {
   unlockMobile();
 
-  // Place color dot in this location.
+  // Send the location to the server.
   ws.write({
-    x: event.x / window.innerWidth,
-    y: event.y / window.innerHeight
+    x: event.x,
+    y: event.y
   });
 
   // Hide the intro text.
@@ -77,8 +76,3 @@ function unlockMobile() {
 // Setup submono so that we can play a range of tones.
 var synth = new Monosynth(audioContext);
 var unlocked = false;
-
-// Update the intro text.
-if (window.location.hash === '#showurl') {
-  introText.innerHTML = 'scale.goldfirestudios.com';
-}

@@ -1,6 +1,6 @@
 var port = parseInt(process.argv[2], 10);
 var Primus = require('primus');
-var primus = new Primus({port: port});
+var primus = new Primus.createServer({port: port});
 var redis = require('redis');
 var pub = redis.createClient();
 var sub = redis.createClient();
@@ -28,6 +28,7 @@ sub.on('message', function(channel, msg) {
 });
 
 primus.on('connection', function(ws) {
+  console.log('CONNECTED', port);
   ws.on('data', function(msg) {
     msg.color = color;
     pub.publish('global', JSON.stringify(msg));
