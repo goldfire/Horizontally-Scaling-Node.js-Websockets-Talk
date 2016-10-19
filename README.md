@@ -1,5 +1,5 @@
 # Horizontally Scaling Node.js and Websockets
-Talk about horizontally scaling Node.js and WebSockets given at Connect.Tech 2016 and Thunder Plains 2016. This talk demonstrates how to use various tools in the Chrome DevTools to identify and fix performance issues beyond just load times in your web applications.
+Underneath every breakout website or app is a horizontally scaling back-end, but how do we get from a single process Node.js server to a highly-available, auto-scaling system? In this talk, we’ll take a high level look at a full production stack before getting our hands dirty with the secret sauce: Node.js, WebSockets and Redis. Through a live coding demo, you’ll learn how to take a single-server app and scale it infinitely. Walk away with a better conceptual understanding of high-scale web systems and practical tools to start implementing these techniques in your own projects today.
 
 * **View Slides:** [Slideshare](https://www.slideshare.net/secret/HiaKWCXBrbApCE)
 * **Live Demo:** [scale.goldfirestudios.com](http://scale.goldfirestudios.com)
